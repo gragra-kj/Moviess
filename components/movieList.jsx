@@ -32,7 +32,7 @@ export default function MovieList({title,data,hideSeeAll}) {
             >
               <View className="space-y-1 mr-4">
                 <Image
-                  source={require("../assets/image.png")}
+                  source={require("../assets/image.jpg")}
                   className="rounded-3xl"
                   style={{ width: width * 0.33, height: height * 0.22 }}
                 />

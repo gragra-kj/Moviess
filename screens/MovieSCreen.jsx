@@ -24,7 +24,7 @@ export default function MovieSCreen() {
   return (
     <ScrollView contentContainerStyle={{paddingBottom:30}} className="flex-1 bg-neutral-900 ">
       <View className="w-full">
-        <SafeAreaView className={"z-20 w-full flex-row  justify-between items-center px-4 absolute  "+topMargin } >
+        <SafeAreaView className={"z-20 w-full flex-row  justify-between items-center pt-4 px-4 absolute  "+topMargin } >
           <TouchableOpacity onPress={()=>navigation.goBack()} className="rounded-xl p-1" style={style.background}>
             <ChevronLeftIcon size="28" strokeWidth={2.5} color="white"/>
           </TouchableOpacity>
