@@ -12,6 +12,7 @@ export default function HomeScreen() {
     const [trendind,setTrending]=useState([1,2,3]);
     const [upcoming,setUpcoming]=useState([1,2,3]);
     const [topRated,setTopRated]=useState([1,2,3])
+    
   return (
     // <SafeAreaView>
     //     <Text>HomeSreen</Text>
