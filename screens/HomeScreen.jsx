@@ -8,7 +8,7 @@ import TrendingMovies from '../components/trendingMovies'
 import MovieList from '../components/movieList'
 import { useNavigation } from '@react-navigation/native'
 import Loading from '../components/loading'
-import { fetchTrendingMovies } from '../api/moviedb'
+import { fetchTopRatedMovies, fetchTrendingMovies, fetchUpcomingMovies } from '../api/moviedb'
 const ios=Platform.OS =='ios'
 
 export default function HomeScreen() {
@@ -16,15 +16,32 @@ export default function HomeScreen() {
     const [upcoming,setUpcoming]=useState([1,2,3]);
     const [topRated,setTopRated]=useState([1,2,3])
     const navigation=useNavigation()
-    const [loading,setLoading]=useState(false)
+    const [loading,setLoading]=useState(true)
 
     
     useEffect(()=>{
       getTrendingMovies();
-    })
+      getUpcomingMovies();
+      getTopRatesMovies()
+    },[])
     const getTrendingMovies=async()=>{
       const data=await fetchTrendingMovies();
-      console.log('got data',data)
+      if(data && data.results) setTrending(data.results)
+      setLoading(false)
+     
+    }
+    const getUpcomingMovies=async()=>{
+      const data=await fetchUpcomingMovies();
+      console.log('upcoming',data)
+      if(data && data.results) setUpcoming(data.results)
+    
+     
+    }
+    const getTopRatesMovies=async()=>{
+      const data=await fetchTopRatedMovies();
+      if(data && data.results) setTopRated(data.results)
+      
+     
     }
   return (
     // <SafeAreaView>
@@ -50,7 +67,10 @@ export default function HomeScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 10 }}
         >
-          <TrendingMovies data={trendind} />
+          
+          {
+            trendind.length > 0 && <TrendingMovies data={trendind}/>
+          }
           <MovieList title="Upcoming" data={upcoming} />
           <MovieList title="Top Rated" data={topRated} />
         </ScrollView>
